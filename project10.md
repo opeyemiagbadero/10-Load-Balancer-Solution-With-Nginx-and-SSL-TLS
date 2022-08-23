@@ -1,5 +1,5 @@
 
-##Load Balancer Solution With Nginx and SSL/TLS##
+## Load Balancer Solution With Nginx and SSL/TLS ##
 
 Created an EC2 VM based on Ubuntu Server 20.04 LTS and named it Nginx LB, opened up the TCP port 80 for HTTP connections and the TCP port 443 for secured HTTPS connections under the Nginx LB server security group.
 
@@ -29,42 +29,32 @@ Registered a new domain name lamislick.com under AWS Route 53 services and updat
 
 ![Screenshot 2022-08-23 at 04 12 25](https://user-images.githubusercontent.com/79456052/186061393-e1765235-1ca0-4cee-b84b-051ec3dd47a8.png)
 
-
 Assigned an Elastic IP to the Nginx LB server and associated the domain name with the Elastic IP
 ![Screenshot 2022-08-22 at 21 02 07](https://user-images.githubusercontent.com/79456052/186060735-a01dc72b-48fe-477a-bef2-fee7c835526b.png)
-
 
 Confirmed that the Web Servers can be reached from my browser using the  new domain name http://www.lamislick.com using HTTP protocol 
 
 ![20  Check that your Web Servers can be reached from your browser using new domain name using HTTP protocol  using lamislick com](https://user-images.githubusercontent.com/79456052/186063242-89fce0f7-7d0e-411a-b991-c732e0f87bf2.png)
 
-
-Installed certbot and requested for an SSL/TLS certificate
-Make sure snapd service was active and running using the command *sudo systemctl status snapd
-* and installed certbot using the command *sudo snap install --classic certbot*
-
+Installed certbot and requested for an SSL/TLS certificate. Made sure snapd service was active and running using the command *sudo systemctl status snapd* and installed certbot using the command *sudo snap install --classic certbot*
 
 ![ 21  Install certbot and request for an SSL:TLS certificate](https://user-images.githubusercontent.com/79456052/186063630-707ed78f-43d2-407f-bdf6-1a21a784da4d.png)
 
-
-Requested for my certificate by  following the certbot instructions using the command *sudo ln -s /snap/bin/certbot /usr/bin/certbot && sudo certbot --nginx*
+Requested for my certificate by following the certbot instructions using the command *sudo ln -s /snap/bin/certbot /usr/bin/certbot && sudo certbot --nginx*
 
 ![Screenshot 2022-08-23 at 04 37 34](https://user-images.githubusercontent.com/79456052/186064631-86ef85e8-40ac-4420-9065-0950a896c998.png)
 
 
-Tested the secured access to my web Solution by trying to reach https://lamislick.com
+Tested the secured access to my web Solution by trying to reach https://www.lamislick.com
 
 ![21  https](https://user-images.githubusercontent.com/79456052/186064854-7123fe88-0a05-4f16-9fea-beb2857ba307.png)
 
-Tested the renewal command in dry-run mode using the command *sudo certbot renew --dry-run*
+Tested the renewal command for my web solution's certificate i.e https://www.lamislick.com in dry-run mode using the command *sudo certbot renew --dry-run*
 
 ![Screenshot 2022-08-23 at 04 49 44](https://user-images.githubusercontent.com/79456052/186066637-47e90f65-0c72-4cbf-809b-655b3fea09ae.png)
 
+Scheduled a cronjob to run renew command for the web solution's certificate  periodically by editting the crontab file with the command *crontab -e* and added the line * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1* as given in the documentation.
 
-Scheduled a cronjob to run renew command periodically by editting the crontab file with the command *crontab -e* and added the line * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1* as given in the documentation.
-
-
- 
 ![Screenshot 2022-08-23 at 04 56 34](https://user-images.githubusercontent.com/79456052/186066675-677c8d2a-b7e2-4c73-a5b9-4c77c28ff173.png)
 
 
