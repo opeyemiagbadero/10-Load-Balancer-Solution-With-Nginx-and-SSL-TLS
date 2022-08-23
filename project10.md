@@ -25,7 +25,7 @@ Restarted nginx and made sure the service was up and running using the command *
 
 ![ 21  Install certbot and request for an SSL:TLS certificate](https://user-images.githubusercontent.com/79456052/186060076-4818e4d0-27be-4a1c-b36f-df4a421a5bae.png)
 
-Registered a new domain name lamislick.com under AWS Route 53 services. 
+Registered a new domain name lamislick.com under AWS Route 53 services and updated A record in the registrar to point to Nginx LB using Elastic IP address
 
 ![Screenshot 2022-08-23 at 04 12 25](https://user-images.githubusercontent.com/79456052/186061393-e1765235-1ca0-4cee-b84b-051ec3dd47a8.png)
 
@@ -33,12 +33,28 @@ Registered a new domain name lamislick.com under AWS Route 53 services.
 Assigned an Elastic IP to the Nginx LB server and associated the domain name with the Elastic IP
 ![Screenshot 2022-08-22 at 21 02 07](https://user-images.githubusercontent.com/79456052/186060735-a01dc72b-48fe-477a-bef2-fee7c835526b.png)
 
-Updated A record in the registrar to point to Nginx LB using Elastic IP address
 
-![3  Created a record on AWS pointing to the Nginx lb ip](https://user-images.githubusercontent.com/79456052/186061036-6caac784-1989-4642-aa89-084c03f4de75.png)
+Confirmed that the Web Servers can be reached from my browser using the  new domain name http://www.lamislick.com using HTTP protocol 
+
+![20  Check that your Web Servers can be reached from your browser using new domain name using HTTP protocol  using lamislick com](https://user-images.githubusercontent.com/79456052/186063242-89fce0f7-7d0e-411a-b991-c732e0f87bf2.png)
 
 
+Installed certbot and requested for an SSL/TLS certificate
+Make sure snapd service was active and running using the command *sudo systemctl status snapd
+* and installed certbot using the command *sudo snap install --classic certbot*
 
+
+![ 21  Install certbot and request for an SSL:TLS certificate](https://user-images.githubusercontent.com/79456052/186063630-707ed78f-43d2-407f-bdf6-1a21a784da4d.png)
+
+
+Requested for my certificate by  following the certbot instructions using the command *sudo ln -s /snap/bin/certbot /usr/bin/certbot && sudo certbot --nginx*
+
+![Screenshot 2022-08-23 at 04 37 34](https://user-images.githubusercontent.com/79456052/186064631-86ef85e8-40ac-4420-9065-0950a896c998.png)
+
+
+Tested the secured access to my web Solution by trying to reach https://lamislick.com
+
+![21  https](https://user-images.githubusercontent.com/79456052/186064854-7123fe88-0a05-4f16-9fea-beb2857ba307.png)
 
 
 
