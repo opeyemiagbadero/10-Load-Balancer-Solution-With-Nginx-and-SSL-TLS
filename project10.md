@@ -56,7 +56,16 @@ Tested the secured access to my web Solution by trying to reach https://lamislic
 
 ![21  https](https://user-images.githubusercontent.com/79456052/186064854-7123fe88-0a05-4f16-9fea-beb2857ba307.png)
 
+Tested the renewal command in dry-run mode using the command *sudo certbot renew --dry-run*
 
+![Screenshot 2022-08-23 at 04 49 44](https://user-images.githubusercontent.com/79456052/186066637-47e90f65-0c72-4cbf-809b-655b3fea09ae.png)
+
+
+Scheduled a cronjob to run renew command periodically by editting the crontab file with the command *crontab -e* and added the line * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1* as given in the documentation.
+
+
+ 
+![Screenshot 2022-08-23 at 04 56 34](https://user-images.githubusercontent.com/79456052/186066675-677c8d2a-b7e2-4c73-a5b9-4c77c28ff173.png)
 
 
 
